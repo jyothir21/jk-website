@@ -401,6 +401,24 @@ main,
   background: rgba(15, 23, 42, 0.8);
 }
 
+/* Project tech chips – glow-on-hover like About Me chips (no floating) */
+.card-tech .chip {
+  position: relative;
+  cursor: default;
+  transition: transform 0.25s ease, border-color 0.3s ease, background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card-tech .chip:hover {
+  border-color: rgba(129, 140, 248, 0.8);
+  box-shadow: 0 0 18px rgba(129, 140, 248, 0.45);
+  background: radial-gradient(
+    circle at center,
+    rgba(79, 70, 229, 0.25),
+    rgba(15, 23, 42, 0.7)
+  );
+}
+
 /* Enhanced animated chips */
 .enhanced-chips {
   margin-top: 1.25rem;
@@ -473,6 +491,7 @@ main,
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 18px;
   margin-top: 1.5rem;
+  align-items: stretch; /* let grid items stretch to equal height */
 }
 
 .card {
@@ -483,6 +502,43 @@ main,
   box-shadow: 0 14px 35px rgba(15, 23, 42, 0.65);
   transition: transform 0.16s ease-out, box-shadow 0.16s ease-out,
     border-color 0.16s ease-out, background 0.16s ease-out;
+  height: 100%; /* fill the grid cell */
+  display: flex; /* stack content vertically */
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.card-subtitle {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.card-body {
+  margin: 0.75rem 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  flex: 1 1 auto; /* this grows to take remaining space */
+}
+
+.card-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.card-link {
+  font-size: 0.85rem;
+  color: var(--accent);
+  text-decoration: none;
+  margin-top: 0.25rem;
 }
 
 .card:hover {
@@ -537,6 +593,138 @@ main,
 
 .card-link:hover {
   text-decoration: underline;
+}
+
+/* === Projects Carousel === */
+
+.projects-carousel {
+  position: relative;
+  max-width: var(--section-max-width);
+  margin-inline: auto;
+  margin-top: 1.5rem;
+  margin-bottom: clamp(6.5rem, 14vh, 8.5rem);
+  padding-block: 0.75rem 0;
+}
+
+.projects-track {
+  position: relative;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* Wrapper that we position + transform; the .card inside stays as-is */
+.project-slide {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform-origin: center center;
+  transition: transform 0.6s ease, opacity 0.6s ease, filter 0.6s ease,
+    z-index 0.6s ease;
+  pointer-events: none;
+}
+
+/* Equal-height project cards inside the carousel */
+.project-slide .card {
+  display: flex;
+  flex-direction: column;
+  min-height: 370px; /* tweak this value if you want taller/shorter */
+}
+
+/* Let the description stretch to fill, keeping tech + link at bottom */
+.project-slide .card-body {
+  flex: 1;
+}
+
+/* center / main card */
+.project-slide-center {
+  transform: translateX(-50%) translateY(0) scale(1);
+  opacity: 1;
+  filter: none;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+/* left + right “behind” cards */
+.project-slide-left {
+  transform: translateX(calc(-50% - 260px)) translateY(20px) scale(0.85);
+  opacity: 0.4;
+  filter: blur(2px);
+  z-index: 2;
+}
+
+.project-slide-right {
+  transform: translateX(calc(-50% + 260px)) translateY(20px) scale(0.85);
+  opacity: 0.4;
+  filter: blur(2px);
+  z-index: 2;
+}
+
+/* everything else fades out */
+.project-slide-hidden {
+  transform: translateX(-50%) translateY(40px) scale(0.75);
+  opacity: 0;
+  filter: blur(4px);
+  z-index: 1;
+}
+
+/* Restrict card width inside the carousel */
+.projects-carousel .card {
+  width: 380px; /* adjust until it matches your original look */
+  max-width: 520px; /* prevents unwanted stretching */
+}
+
+/* navigation arrows */
+
+.projects-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: radial-gradient(circle at top, #111827, #020617);
+  color: var(--text);
+
+  /* Center the arrow perfectly */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.25rem;
+
+  /* FIX: remove any font vertical offset */
+  line-height: 0;
+
+  cursor: pointer;
+  z-index: 4;
+  transition: background 0.15s ease, border-color 0.15s ease,
+    transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.projects-arrow-left {
+  left: 0.5rem;
+}
+
+.projects-arrow-right {
+  right: 0.5rem;
+}
+
+.projects-arrow:hover {
+  border-color: var(--accent);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.9);
+  transform: translateY(-50%) translateY(-1px);
+}
+
+/* small tweak so subtitle under project title looks nice */
+.card-subtitle {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
 }
 
 /* =========================
