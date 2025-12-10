@@ -1,0 +1,627 @@
+/* =========================
+   Root & Global Reset
+   ========================= */
+
+:root {
+  --bg: #050816;
+  --bg-elevated: #0b1020;
+  --accent: #4f46e5;
+  --accent-soft: rgba(79, 70, 229, 0.15);
+  --text: #f9fafb;
+  --muted: #9ca3af;
+  --border: #1f2933;
+  --radius-lg: 18px;
+  --radius-md: 999px;
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.35);
+
+  --page-padding-x: clamp(1rem, 4vw, 3rem);
+  --section-max-width: min(80rem, 100% - 2 * var(--page-padding-x));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* =========================
+   Page / Layout
+   ========================= */
+
+html {
+  scroll-behavior: smooth;
+  /* Reserve space for sticky navbar when jumping to #anchors */
+  scroll-padding-top: clamp(4rem, 8vh, 5rem);
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden; /* prevent horizontal scroll globally */
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background: radial-gradient(
+    circle at top,
+    #111827 0,
+    #050816 45%,
+    #020617 100%
+  );
+  color: var(--text);
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow-x: hidden; /* extra safety for transforms/shadows */
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  padding-top: clamp(4rem, 9vh, 6rem);
+  padding-bottom: clamp(3rem, 7vh, 4rem);
+  padding-inline: var(--page-padding-x);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.section {
+  max-width: var(--section-max-width);
+  margin-inline: auto;
+  margin-bottom: clamp(3rem, 6vh, 4.5rem);
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.section-intro {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+/* =========================
+   Global Glow
+   ========================= */
+
+.global-glow {
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle at center,
+    rgba(79, 70, 229, 0.4),
+    transparent 65%
+  );
+  pointer-events: none;
+  filter: blur(32px);
+  opacity: 0.7;
+  mix-blend-mode: screen;
+  transform: translate3d(-999px, -999px, 0);
+  transition: transform 0.35s ease-out;
+  z-index: 0;
+}
+
+/* Make sure main content sits above the glow */
+.navbar,
+main,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+.scroll-orbit {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0; /* under navbar + content, above background */
+  filter: drop-shadow(0 0 35px rgba(79, 70, 229, 0.5));
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+.scroll-orbit svg {
+  width: 100%;
+  height: auto;
+}
+
+/* top-left cluster */
+.scroll-orbit-left {
+  top: 6vh;
+  left: max(-140px, -10vw);
+  width: min(360px, 30vw);
+}
+
+/* bottom-right cluster */
+.scroll-orbit-right {
+  bottom: 6vh;
+  right: max(-140px, -10vw);
+  width: min(360px, 30vw);
+}
+
+/* Slightly tone it down on small screens */
+@media (max-width: 800px) {
+  .scroll-orbit {
+    opacity: 0.55;
+    filter: drop-shadow(0 0 25px rgba(79, 70, 229, 0.4));
+  }
+
+  .scroll-orbit-left,
+  .scroll-orbit-right {
+    width: min(260px, 55vw);
+  }
+}
+
+/* =========================
+   Navbar
+   ========================= */
+
+.navbar {
+  position: fixed; /* was: sticky */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px);
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 8, 22, 0.92),
+    rgba(5, 8, 22, 0.75),
+    transparent
+  );
+  border-bottom: 1px solid rgba(15, 23, 42, 0.8);
+}
+
+.nav-inner {
+  max-width: var(--section-max-width);
+  margin-inline: auto;
+  padding-block: 0.75rem;
+  padding-inline: var(--page-padding-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  background: radial-gradient(circle, #1e293b, #020617);
+}
+
+.nav-inner ul {
+  display: flex;
+  gap: 18px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-inner a {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 999px;
+  transition: color 0.16s ease, background 0.16s ease;
+}
+
+.nav-inner a:hover {
+  color: var(--text);
+  background: rgba(148, 163, 184, 0.18);
+}
+
+/* =========================
+   Reveal (scroll-in effect)
+   ========================= */
+
+.reveal {
+  width: 100%;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   Hero
+   ========================= */
+
+.hero {
+  position: relative;
+  max-width: var(--section-max-width);
+  width: min(100%, 80rem);
+  margin-inline: auto;
+  margin-block: clamp(2rem, 5vh, 3.5rem);
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  align-items: center;
+  overflow: visible;
+}
+
+.hero-text,
+.hero-card {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-kicker {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 3.4rem);
+  margin: 0 0 0.75rem;
+  max-width: 22ch;
+  line-height: 1.1;
+}
+
+/* new: reserve space for the second line so it doesn't jump */
+.hero-title-line {
+  display: block;
+  margin-top: 0.1em;
+  min-height: 1.15em; /* always enough height for one line */
+}
+
+.hero-title-rotating {
+  display: inline-block;
+  white-space: nowrap; /* keep the changing text itself on one line */
+  border-right: 2px solid rgba(249, 250, 251, 0.8); /* optional caret */
+  padding-right: 0.1em;
+  animation: caretBlink 0.8s steps(1) infinite;
+}
+
+@keyframes caretBlink {
+  0%,
+  50% {
+    border-color: rgba(249, 250, 251, 0.8);
+  }
+  51%,
+  100% {
+    border-color: transparent;
+  }
+}
+
+.hero-subtitle {
+  color: var(--muted);
+  max-width: 32rem;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-card {
+  background: radial-gradient(circle at top, #1f2937, #020617);
+  padding: 20px 18px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.hero-tag {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.5rem;
+}
+
+.hero-card h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+}
+
+.hero-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* =========================
+   Buttons
+   ========================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease,
+    border-color 0.12s ease;
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 14px 30px rgba(79, 70, 229, 0.45);
+}
+
+.btn.primary:hover {
+  box-shadow: 0 18px 40px rgba(79, 70, 229, 0.6);
+  transform: translateY(-1px);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+.btn.ghost:hover {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/* =========================
+   Chips, Cards, Grids
+   ========================= */
+
+.chips {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+/* Enhanced animated chips */
+.enhanced-chips {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.glow-chip {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--text);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(6px);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: transform 0.25s ease, border-color 0.3s ease, background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.glow-chip:hover {
+  transform: translateY(-3px);
+  border-color: rgba(129, 140, 248, 0.8);
+  box-shadow: 0 0 18px rgba(129, 140, 248, 0.45);
+  background: radial-gradient(
+    circle at center,
+    rgba(79, 70, 229, 0.25),
+    rgba(15, 23, 42, 0.7)
+  );
+}
+
+/* Optional: smooth floating animation for extra polish */
+.glow-chip:nth-child(odd) {
+  animation: floatA 5s ease-in-out infinite;
+}
+
+.glow-chip:nth-child(even) {
+  animation: floatB 6s ease-in-out infinite;
+}
+
+@keyframes floatA {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes floatB {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  padding: 18px 18px 16px;
+  border: 1px solid rgba(30, 64, 175, 0.28);
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.65);
+  transition: transform 0.16s ease-out, box-shadow 0.16s ease-out,
+    border-color 0.16s ease-out, background 0.16s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.9);
+  border-color: rgba(129, 140, 248, 0.8);
+  background: radial-gradient(
+    circle at top left,
+    rgba(79, 70, 229, 0.12),
+    var(--bg-elevated)
+  );
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.card-header h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.card-pill {
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: #e5e7eb;
+}
+
+.card-body {
+  margin: 0.75rem 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.card-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.card-link {
+  font-size: 0.85rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Timeline / Experience
+   ========================= */
+
+.timeline {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 16px;
+}
+
+.timeline-item {
+  padding: 14px 14px 12px;
+  border-left: 2px solid rgba(79, 70, 229, 0.7);
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 12px;
+}
+
+.timeline-item h3 {
+  margin: 0 0 0.1rem;
+  font-size: 1rem;
+}
+
+.timeline-company {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.timeline-period {
+  margin: 0.2rem 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* =========================
+   Contact
+   ========================= */
+
+.contact-links {
+  margin-top: 1rem;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   Footer
+   ========================= */
+
+.footer {
+  position: relative;
+  z-index: 10;
+  border-top: 1px solid rgba(15, 23, 42, 0.9);
+  padding: 18px var(--page-padding-x) 22px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.8rem;
+
+  /* blur + gradient so the orbit disappears into it */
+  backdrop-filter: blur(26px);
+  background: linear-gradient(
+    to top,
+    rgba(5, 8, 22, 0.97),
+    rgba(5, 8, 22, 0.8),
+    rgba(5, 8, 22, 0.4),
+    transparent
+  );
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nav-inner ul {
+    gap: 10px;
+  }
+
+  main {
+    padding-top: 80px;
+  }
+}
