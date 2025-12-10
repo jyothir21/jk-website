@@ -550,10 +550,35 @@ main,
 }
 
 .timeline-item {
-  padding: 14px 14px 12px;
-  border-left: 2px solid rgba(79, 70, 229, 0.7);
-  background: rgba(15, 23, 42, 0.8);
-  border-radius: 12px;
+  position: relative;
+  padding-right: 240px; /* ensures bullets don't overlap logo */
+}
+
+.timeline-logo {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 180px;
+  width: auto;
+  opacity: 1; /* no fading */
+  filter: none; /* remove all previous filters */
+}
+
+/* nested course list */
+.timeline-courses {
+  margin-top: 0.25rem;
+  margin-left: 1.5rem;
+  list-style-type: disc;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* hide logos on small screens if they feel crowded */
+@media (max-width: 800px) {
+  .timeline-logo {
+    display: none;
+  }
 }
 
 .timeline-item h3 {
@@ -570,6 +595,24 @@ main,
 .timeline-period {
   margin: 0.2rem 0 0.4rem;
   font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.course-list {
+  margin-top: 0.25rem;
+  padding-left: 1.5rem; /* nested indent under the main bullet */
+}
+
+.course-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.course-name {
+  min-width: 16rem; /* controls how far out the dates line up */
+}
+
+.course-term {
   color: var(--muted);
 }
 
