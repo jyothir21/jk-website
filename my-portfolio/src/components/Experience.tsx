@@ -11,9 +11,7 @@ type ExperienceItem = {
   company: string;
   period: string;
   bullets: string[];
-  courses?: Course[];
-  logo?: string;
-  logoAlt?: string;
+  courses?: Course[]; // optional nested course list
 };
 
 const experience: ExperienceItem[] = [
@@ -22,12 +20,10 @@ const experience: ExperienceItem[] = [
     company: "Respawn Entertainment",
     period: "May 2025 – Aug 2025",
     bullets: [
-      "Returned to the same team at Respawn Entertainment as a Software Engineering Intern, contributing to sprint tasks and resolving critical UI bugs to support game stability and quality.",
+      "Returned to the same team in Respawn Entertainment as a Software Engineering Intern, contributing to sprint tasks and resolving critical UI bugs to support game stability and quality.",
       "Collaborated with senior SS and QV engineers to investigate and fix UI automation soak bugs, enhancing test coverage and reliability through script and code-level solutions.",
       "Took initiative in driving improvements to generic UI soak testing, aligning with team best practices and improving cross-functional collaboration.",
     ],
-    logo: "/logos/respawn-logo.png",
-    logoAlt: "Respawn Entertainment logo",
   },
   {
     role: "IT Systems Support Analyst (Co-op)",
@@ -38,11 +34,9 @@ const experience: ExperienceItem[] = [
       "Developed PowerShell scripts to automate internal workflows, improving efficiency and reducing errors across the Email and Collaboration team.",
       "Supported campus events and tested new Microsoft admin features prior to rollout while maintaining documentation for end users.",
     ],
-    logo: "/logos/uog-logo.png",
-    logoAlt: "University of Guelph CCS logo",
   },
   {
-    role: "UI Engine Engineer (Internship)",
+    role: "UI Engine Engineer (Co-op)",
     company: "Respawn Entertainment",
     period: "May 2024 – Aug 2024",
     bullets: [
@@ -50,21 +44,17 @@ const experience: ExperienceItem[] = [
       "Led and contributed to discussions on error-handling standards, helping the team adopt consistent best practices.",
       "Addressed and resolved gameplay bugs, contributing to overall game performance and user experience.",
     ],
-    logo: "/logos/respawn-logo.png",
-    logoAlt: "Respawn Entertainment logo",
   },
   {
-    role: "Software Engineer (Co-op)",
+    role: "C++ Software Engineer (Co-op)",
     company: "Electronic Arts (EA)",
     period: "May 2023 – Dec 2023",
     bullets: [
-      "Diagnosed and addressed back-end bugs and game crashes in FC24 using advanced C++ and object-oriented programming techniques.",
-      "Enhanced game functionality by adding new screen features and optimizing design elements using ActionScript, Adobe Flash, and the Frostbite Drone Engine.",
-      "Created Python scripts to streamline screen-code management workflows for Software Engineers, improving efficiency and reducing manual effort.",
-      "Contributed to sprint planning within an Agile Scrum framework, leveraging Perforce for version control and collaborating closely with designers and QA.",
+      "Diagnosed and resolved back-end bugs and game crashes in FC24 through advanced C++ and object-oriented programming techniques.",
+      "Enhanced game functionality by introducing new screen features and optimizing design elements using ActionScript, Adobe Flash, and Frostbite tooling.",
+      "Created Python scripts to streamline workflows for software engineers, improving productivity and debugging efficiency.",
+      "Participated in Agile Scrum rituals, including sprint planning and feature development, using Perforce for version control.",
     ],
-    logo: "/logos/ea-logo.png",
-    logoAlt: "Electronic Arts logo",
   },
   {
     role: "Undergraduate Teaching Assistant",
@@ -84,8 +74,6 @@ const experience: ExperienceItem[] = [
       { name: "Introduction to Programming", term: "Fall 2025" },
       { name: "Intermediate Programming", term: "Winter 2026" },
     ],
-    logo: "/logos/uog-logo.png",
-    logoAlt: "University of Guelph logo",
   },
 ];
 
@@ -95,42 +83,31 @@ export const Experience: React.FC = () => {
       {experience.map((item, index) => (
         <Reveal key={item.role} delay={index * 120}>
           <div className="timeline-item">
-            <div className="timeline-content">
-              <h3>{item.role}</h3>
-              <p className="timeline-company">{item.company}</p>
-              <p className="timeline-period">{item.period}</p>
+            <h3>{item.role}</h3>
+            <p className="timeline-company">{item.company}</p>
+            <p className="timeline-period">{item.period}</p>
+            <ul>
+              {item.bullets.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
 
-              <ul>
-                {item.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-
-                {item.courses && (
-                  <li>
-                    Courses taught across multiple terms:
-                    <ul className="course-list">
-                      {item.courses.map((course) => (
-                        <li
-                          key={course.name + course.term}
-                          className="course-row"
-                        >
-                          <span className="course-name">{course.name}</span>
-                          <span className="course-term">- {course.term}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                )}
-              </ul>
-            </div>
-
-            {item.logo && (
-              <img
-                className="timeline-logo"
-                src={item.logo}
-                alt={item.logoAlt ?? `${item.company} logo`}
-              />
-            )}
+              {item.courses && (
+                <li>
+                  Courses taught across multiple terms:
+                  <ul className="course-list">
+                    {item.courses.map((course) => (
+                      <li
+                        key={course.name + course.term}
+                        className="course-row"
+                      >
+                        <span className="course-name">{course.name}</span>
+                        <span className="course-term">- {course.term}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              )}
+            </ul>
           </div>
         </Reveal>
       ))}
