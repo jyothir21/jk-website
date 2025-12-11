@@ -13,7 +13,7 @@ export const Contact: React.FC = () => {
           Email Me
         </a>
         <a
-          href="https://www.linkedin.com/in/jyothirk21"
+          href="https://www.linkedin.com/in/jyothir-krishnan/"
           className="btn ghost"
           target="_blank"
           rel="noreferrer"
