@@ -198,7 +198,7 @@ main,
 
 /* Full-name gradient */
 .logo-gradient {
-  background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 50%, #d946ef 100%);
+  background: linear-gradient(90deg, #4338ca 0%, #7c3aed 50%, #8226d3 100%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -1018,16 +1018,159 @@ main,
    Responsive
    ========================= */
 
-@media (max-width: 800px) {
-  .hero {
-    grid-template-columns: minmax(0, 1fr);
+/* Medium screens (tablets, small laptops) */
+@media (max-width: 900px) {
+  :root {
+    --page-padding-x: 1.25rem;
+  }
+
+  .section h2 {
+    font-size: 1.7rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.1rem, 4.3vw, 3rem);
+  }
+
+  .logo-gradient {
+    font-size: 1.6rem;
+  }
+
+  .projects-carousel {
+    margin-bottom: 4.5rem;
+  }
+}
+
+/* Nav + layout for small screens */
+@media (max-width: 700px) {
+  /* Navbar: logo only, centered */
+  .nav-inner {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    padding-block: 0.9rem;
   }
 
   .nav-inner ul {
-    gap: 10px;
+    display: none; /* hide nav links */
   }
 
+  .logo {
+    margin: 0 auto;
+  }
+
+  /* Give main a bit of top space for the fixed nav */
   main {
     padding-top: 80px;
+  }
+
+  /* Hero single column (you already had this; keeping it) */
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    margin-block: 2.25rem 2.75rem;
+  }
+
+  .hero-card {
+    margin-top: 0.75rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Cards: force 1 per row for anything using the generic grid */
+  .cards-grid:not(.coop-grid) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Timeline / courses – avoid horizontal overflow */
+  .course-row {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .course-name {
+    min-width: auto;
+  }
+
+  /* Contact links: full-width buttons feel better on small screens */
+  .contact-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contact-links a {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Report view padding on mobile */
+  .report-inner {
+    padding-inline: 1.25rem;
+  }
+
+  /* Hide project dot tracker on mobile */
+  .projects-dots {
+    display: none;
+  }
+}
+
+/* Very small screens (narrow phones) */
+@media (max-width: 500px) {
+  :root {
+    --page-padding-x: 1rem;
+  }
+
+  .logo-gradient {
+    font-size: 1.4rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 2.4rem);
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  /* Make project cards fit the viewport width */
+  .projects-carousel .card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* On very small screens, turn the carousel into a simple vertical list */
+  .projects-track {
+    display: block;
+    min-height: 0;
+  }
+
+  .project-slide {
+    position: static;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    pointer-events: auto;
+    margin-bottom: 1.25rem;
+  }
+
+  .projects-arrow {
+    display: none;
+  }
+
+  /* Hide dots entirely on very small screens */
+  .projects-dots {
+    display: none;
+  }
+
+  .footer {
+    font-size: 0.75rem;
   }
 }

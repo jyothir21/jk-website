@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 
 logos/
+public/favicon-new.svg
