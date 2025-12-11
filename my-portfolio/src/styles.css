@@ -645,6 +645,60 @@ main,
   overflow: visible;
 }
 
+/* === Projects carousel dot tracker === */
+
+.projects-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 7.5rem;
+}
+
+.projects-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+  background: rgba(148, 163, 184, 0.35);
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.projects-dot-active {
+  opacity: 1;
+  background: var(--accent);
+  transform: scale(1.4);
+  box-shadow: 0 0 12px rgba(79, 70, 229, 0.75);
+}
+
+/* keyboard focus outline */
+.projects-dot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* --- Project dots: kill the default focus glow --- */
+
+.projects-dot {
+  border: none;
+  outline: none;
+}
+
+/* remove browser outline on focus */
+.projects-dot:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* optional: nice focus ring only for keyboard navigation */
+.projects-dot:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.85);
+}
+
 /* Wrapper that we position + transform; the .card inside stays as-is */
 .project-slide {
   position: absolute;
@@ -911,6 +965,11 @@ main,
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.contact-links a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
 }
 
 /* =========================

@@ -92,7 +92,7 @@ export const Projects: React.FC = () => {
     if (autoRotateRef.current !== null) return; // already running
     autoRotateRef.current = window.setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % total);
-    }, 7000); // same timing as before
+    }, 7000);
   };
 
   const stopAutoRotate = () => {
@@ -103,15 +103,12 @@ export const Projects: React.FC = () => {
   };
 
   const pauseAutoRotateForUser = () => {
-    // stop auto-rotation immediately
     stopAutoRotate();
 
-    // reset any existing pause timer
     if (pauseTimeoutRef.current !== null) {
       window.clearTimeout(pauseTimeoutRef.current);
     }
 
-    // resume auto-rotation after 10 seconds of inactivity
     pauseTimeoutRef.current = window.setTimeout(() => {
       startAutoRotate();
     }, 10000);
@@ -127,6 +124,12 @@ export const Projects: React.FC = () => {
     pauseAutoRotateForUser();
   };
 
+  // NEW: jump directly to a specific project (for dots)
+  const goTo = (index: number) => {
+    setActiveIndex(index);
+    pauseAutoRotateForUser();
+  };
+
   // initial auto-rotate setup
   useEffect(() => {
     startAutoRotate();
@@ -137,7 +140,6 @@ export const Projects: React.FC = () => {
         window.clearTimeout(pauseTimeoutRef.current);
       }
     };
-    // total is stable, but included for completeness
   }, [total]);
 
   return (
@@ -204,6 +206,24 @@ export const Projects: React.FC = () => {
         >
           ›
         </button>
+
+        {/* NEW: dot tracker */}
+        <div className="projects-dots" aria-label="Project selector">
+          {projects.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              className={
+                index === activeIndex
+                  ? "projects-dot projects-dot-active"
+                  : "projects-dot"
+              }
+              onClick={() => goTo(index)}
+              aria-label={`Show project ${index + 1} of ${total}`}
+              aria-pressed={index === activeIndex}
+            />
+          ))}
+        </div>
       </div>
     </Reveal>
   );
