@@ -179,7 +179,7 @@ main,
 }
 
 .nav-inner {
-  max-width: var(--section-max-width);
+  width: 100%;
   margin-inline: auto;
   padding-block: 0.75rem;
   padding-inline: var(--page-padding-x);
@@ -189,15 +189,33 @@ main,
 }
 
 .logo {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(148, 163, 184, 0.5);
-  display: grid;
-  place-items: center;
-  font-weight: 600;
-  font-size: 0.95rem;
-  background: radial-gradient(circle, #1e293b, #020617);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Full-name gradient */
+.logo-gradient {
+  background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 50%, #d946ef 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 0.02em;
+  display: inline-block;
+  font-size: 1.85rem;
+  font-weight: 900;
+
+  /* Smooth scaling + brightness transitions */
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* hover pop-out */
+.logo:hover .logo-gradient,
+.logo:focus-visible .logo-gradient {
+  filter: brightness(1.15);
+  transform: scale(1.08); /* subtle, premium pop */
 }
 
 .nav-inner ul {
@@ -209,7 +227,7 @@ main,
 }
 
 .nav-inner a {
-  font-size: 0.9rem;
+  font-size: 1.02rem;
   color: var(--muted);
   text-decoration: none;
   padding: 6px 10px;
@@ -217,7 +235,7 @@ main,
   transition: color 0.16s ease, background 0.16s ease;
 }
 
-.nav-inner a:hover {
+.nav-inner nav a:hover {
   color: var(--text);
   background: rgba(148, 163, 184, 0.18);
 }

@@ -36,7 +36,7 @@ export const Hero: React.FC = () => {
   return (
     <div className="hero">
       <div className="hero-text">
-        <p className="hero-kicker">Software Engineer · Student · Builder</p>
+        <p className="hero-kicker">Software Engineer · Student</p>
 
         <h1 className="hero-title">
           Hi, I&apos;m

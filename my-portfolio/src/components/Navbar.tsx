@@ -25,7 +25,10 @@ export const Navbar: React.FC = () => {
   return (
     <header className="navbar">
       <div className="nav-inner">
-        <div className="logo">JK</div>
+        <a href="#" className="logo">
+          <span className="logo-gradient">JK</span>
+        </a>
+
         <nav>
           <ul>
             {links.map((link) => (
