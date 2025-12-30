@@ -1,73 +1,119 @@
-# React + TypeScript + Vite
+# Jyothir Krishnan – Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the source code for my personal portfolio website. The site is designed to showcase my experience, projects, certifications, and interests as a software engineer.
 
-Currently, two official plugins are available:
+The focus of this portfolio is clarity, performance, and thoughtful UI design, reflecting how I approach building real-world software systems.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 **Live Website:** https://jyothirkrishnan.com
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Overview
 
-## Expanding the ESLint configuration
+This portfolio highlights:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Software engineering experience and internships
+- Personal and academic projects
+- Co-op reports and technical write-ups
+- Certifications and continuous learning
+- Contact and professional links
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The site is fully responsive and emphasizes subtle motion, clean layouts, and smooth interactions while remaining performant and accessible.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Tech Stack
+
+- **Framework:** React
+- **Language:** TypeScript
+- **Build Tool:** Vite
+- **Styling:** Custom CSS
+- **Deployment:** GitHub Pages
+- **Domain:** Custom domain with HTTPS
+
+---
+
+## Features
+
+- Responsive design for desktop, tablet, and mobile
+- Scroll-based reveal animations
+- Smooth anchor navigation
+- Interactive project carousel
+- Consistent, modern UI design
+- Production-ready build and deployment setup
+
+---
+
+## Running the Project Locally
+
+Install dependencies:
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Start the development server:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+The site will be available at:
+
+```
+http://localhost:5173
+```
+
+---
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+The output will be generated in the `dist/` directory.
+
+---
+
+## Deployment
+
+The site is deployed using GitHub Pages.
+
+```bash
+npm run deploy
+```
+
+This command builds the project and publishes the output to the `gh-pages` branch.
+
+---
+
+## Project Structure
+
+```
+src/
+  assets/          Static assets such as images and icons
+  components/      Reusable UI components
+  App.tsx          Root application component
+  main.tsx         Application entry point
+  styles.css       Global styles
+
+public/
+  favicon.svg
+
+index.html         HTML entry file
+vite.config.ts     Vite configuration
+```
+
+---
+
+## Motivation
+
+This portfolio is a living project that evolves alongside my skills and interests. Rather than being a static resume, it reflects how I think about engineering, design, and building software that feels polished, intuitive, and reliable.
+
+---
+
+## Contact
+
+- **LinkedIn:** https://www.linkedin.com/in/jyothir-krishnan
+- **GitHub:** https://github.com/jyothir21
