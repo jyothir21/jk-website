@@ -57,6 +57,51 @@ function App() {
           </Reveal>
         </section>
 
+        {/* Certificates */}
+        <Reveal delay={80}>
+          <section id="certificates" className="section">
+            <h2>Certificates</h2>
+            <p className="section-intro">
+              Professional certifications completed to deepen my technical
+              foundation.
+            </p>
+
+            <div className="cards-grid certificate-grid">
+              <article className="card">
+                <header className="card-header">
+                  <div>
+                    <h3>
+                      PH125.8x: Data Science – Building Machine Learning Models
+                    </h3>
+                    <p className="card-subtitle">
+                      HarvardX · Harvard University · 2025
+                    </p>
+                  </div>
+                  <span className="card-pill">Certificate</span>
+                </header>
+
+                <p className="card-body">
+                  Completed a rigorous 6-week HarvardX course focused on
+                  practical machine learning and data science workflows. Covered
+                  supervised learning, model evaluation, feature engineering,
+                  and real world applications using R. Emphasis was placed on
+                  building reliable models, understanding tradeoffs, and
+                  applying statistical reasoning to real datasets.
+                </p>
+
+                <a
+                  href="/HarvardX.pdf"
+                  className="card-link"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View Verified Certificate →
+                </a>
+              </article>
+            </div>
+          </section>
+        </Reveal>
+
         {/* Co-op Reports */}
         <section id="coop" className="section">
           <h2>Co-op Reports</h2>

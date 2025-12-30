@@ -206,6 +206,8 @@ main,
   display: inline-block;
   font-size: 1.85rem;
   font-weight: 900;
+  margin-top: -5px;
+  margin-bottom: -10px;
 
   /* Smooth scaling + brightness transitions */
   transition: transform 0.25s ease, filter 0.25s ease;
@@ -541,6 +543,17 @@ main,
   .cards-grid.coop-grid .card {
     flex: 1 1 100%;
   }
+}
+
+/* === Certificates grid (single centered card) === */
+.cards-grid.certificate-grid {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.cards-grid.certificate-grid .card {
+  width: min(520px, 100%);
 }
 
 .card {
