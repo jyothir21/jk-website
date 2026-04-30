@@ -55,7 +55,7 @@ export const Hero: React.FC = () => {
 
         <div className="hero-actions">
           <a
-            href="/Jyothir_Krishnan_Resume_2025.pdf"
+            href="/Jyothir_Krishnan_Resume_2026.pdf"
             download="JyothirKrishnan_Resume.pdf"
             className="btn primary"
           >

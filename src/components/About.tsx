@@ -4,10 +4,11 @@ export const About: React.FC = () => {
   return (
     <>
       <p>
-        I am a Computer Science student at the University of Guelph, graduating
-        in April 2026. I have developed a strong interest in software
-        engineering, UI systems, game development, and machine learning, and I
-        enjoy building software that feels intuitive, reliable, and polished.
+        I am a Computer Science graduate from the University of Guelph, having
+        completed my degree in April 2026. I have developed a strong interest in
+        software engineering, UI systems, game development, and machine
+        learning, and I enjoy building software that feels intuitive, reliable,
+        and polished.
       </p>
 
       <p>

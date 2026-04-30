@@ -59,7 +59,7 @@ const experience: ExperienceItem[] = [
   {
     role: "Undergraduate Teaching Assistant",
     company: "University of Guelph",
-    period: "Aug 2022 – Present",
+    period: "Aug 2022 – Apr 2026",
     bullets: [
       "Taught multiple Computer Science courses including Software Design I (Python), Introduction to Programming (C), and Intermediate Programming (C).",
       "Led lab sessions, explained key programming concepts, and created instructional materials such as walkthroughs and tutorials.",
