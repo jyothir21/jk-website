@@ -16,6 +16,15 @@ type ExperienceItem = {
 
 const experience: ExperienceItem[] = [
   {
+    role: "Backend Developer",
+    company: "JAM CRM",
+    period: "Aug 2026 – Present",
+    bullets: [
+      "Developing applications, dynamic microsites, and web forms using Python, REST APIs, JavaScript, and SQL.",
+      "Supporting serverless AWS infrastructure (Lambda, API Gateway, S3) and CI/CD pipelines with Git.",
+    ],
+  },
+  {
     role: "UI Engine Engineer (Co-op)",
     company: "Respawn Entertainment",
     period: "May 2025 – Aug 2025",

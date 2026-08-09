@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const TITLES = ["Jyothir Krishnan", "a Software Engineer", "a Student"];
+const TITLES = ["Jyothir Krishnan", "a Backend Developer", "a Software Engineer"];
 
 export const Hero: React.FC = () => {
   const [loopIndex, setLoopIndex] = useState(0);
@@ -36,7 +36,7 @@ export const Hero: React.FC = () => {
   return (
     <div className="hero">
       <div className="hero-text">
-        <p className="hero-kicker">Software Engineer · Student</p>
+        <p className="hero-kicker">Software Engineer · Backend Developer</p>
 
         <h1 className="hero-title">
           Hi, I&apos;m
@@ -55,7 +55,7 @@ export const Hero: React.FC = () => {
 
         <div className="hero-actions">
           <a
-            href="/Jyothir_Krishnan_Resume_2026.pdf"
+            href="/Jyothir_Krishnan_Resume_2026_JAM.pdf"
             download="JyothirKrishnan_Resume.pdf"
             className="btn primary"
           >
@@ -74,11 +74,11 @@ export const Hero: React.FC = () => {
 
       <div className="hero-card">
         <p className="hero-tag">Currently</p>
-        <h3>Seeking New-Grad Software Engineering Roles</h3>
+        <h3>Backend Developer at JAM CRM</h3>
         <p>
-          Open to opportunities in software engineering, game development, or
-          machine learning engineering where I can contribute to thoughtful,
-          scalable, and user-focused systems.
+          Building applications, microsites, and web forms on Python, REST
+          APIs, and SQL, backed by serverless AWS infrastructure. Growing into
+          data science and AI work on the side.
         </p>
       </div>
     </div>

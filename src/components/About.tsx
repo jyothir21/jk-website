@@ -4,35 +4,30 @@ export const About: React.FC = () => {
   return (
     <>
       <p>
-        I am a Computer Science graduate from the University of Guelph, having
-        completed my degree in April 2026. I have developed a strong interest in
-        software engineering, UI systems, game development, and machine
-        learning, and I enjoy building software that feels intuitive, reliable,
-        and polished.
+        I&apos;m a Backend Developer at JAM CRM, and a recent Computer Science
+        grad from the University of Guelph (Bachelor of Computing, Honours
+        Co-op).
       </p>
 
       <p>
-        I have completed multiple internships at Electronic Arts and Respawn
-        Entertainment, where I worked on UI engine systems, debugging complex
-        issues, improving automation reliability, and contributing to tooling
-        used across the Apex Legends R5 engine. These experiences strengthened
-        my ability to work in large production codebases and collaborate with
-        teams to deliver meaningful technical solutions.
+        Before this, I spent a few years interning at Electronic Arts and
+        Respawn Entertainment, working on UI engine systems for Apex Legends
+        and EA Sports FC. I fixed bugs, built out error-handling and
+        automation tooling, and learned a lot about working in a large,
+        established codebase.
       </p>
 
       <p>
-        Outside of industry work, I explore new technologies through personal
-        projects. Recent work includes Chaos Kitchen, a real time cooperative
-        mobile game built with Flutter and Flame, and a Movie Recommendation
-        System using Python and Scikit Learn to experiment with content based,
-        collaborative, and hybrid models. I enjoy creating projects that
-        challenge me to learn, refine my engineering approach, and build
-        thoughtful user experiences.
+        Outside of internships, I like building things for fun. Chaos Kitchen
+        is a real-time co-op mobile game I made in Flutter, and I also built a
+        movie recommendation system using Python and scikit-learn to mess
+        around with matrix factorization.
       </p>
 
       <p>
-        I am always excited to learn, solve meaningful problems, and collaborate
-        with others who share a passion for building high quality software.
+        I&apos;m looking to grow more into data science and AI work going
+        forward, and I&apos;m always happy to connect with other software
+        engineers.
       </p>
 
       {/* Animated Language Chips */}

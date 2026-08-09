@@ -9,7 +9,7 @@ export const Contact: React.FC = () => {
       </p>
 
       <div className="contact-links">
-        <a href="mailto:jkrishna@uoguelph.ca" className="btn primary">
+        <a href="mailto:kris.jyothir@gmail.com" className="btn primary">
           Email Me
         </a>
         <a
